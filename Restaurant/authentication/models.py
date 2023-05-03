@@ -5,7 +5,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 
 ROLES = (
-    (0, 'Visitor'),
+    (0, 'Employee'),
     (1, 'Admin'),
 )
 
