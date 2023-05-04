@@ -1,5 +1,4 @@
-from rest_framework import generics, permissions, mixins
-from rest_framework.permissions import IsAuthenticated
+from rest_framework import generics
 from restaurants.models import Restaurants
 from restaurants.permissions import IsAdmin
 from restaurants.serializers import ReadCreateSerializer

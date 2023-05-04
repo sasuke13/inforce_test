@@ -1,16 +1,10 @@
-from django.shortcuts import render
-from rest_framework import generics, status
-from rest_framework.authentication import TokenAuthentication
+from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from votes.models import Votes
 from votes.permissions import IsAdmin
 from votes.serializers import VoteSerializer, ResultSerializer
-
-from rest_framework.decorators import api_view, authentication_classes, permission_classes
-
-from rest_framework.permissions import IsAuthenticated
 
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
