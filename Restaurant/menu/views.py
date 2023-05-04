@@ -1,10 +1,10 @@
-from rest_framework import generics, permissions
+from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from menu.models import Menu
 from menu.permissions import IsAdmin
-from menu.serializer import MenuSerializer, MenuRestaurantSerializer, FullMenuSerializer
+from menu.serializer import MenuRestaurantSerializer, FullMenuSerializer
 
 from datetime import datetime
 
@@ -50,39 +50,3 @@ class TodayMenuListCreateAPIView(APIView):
         print(result_lst)
         serializer = MenuRestaurantSerializer(result_lst, many=True)
         return Response(serializer.data)
-
-
-    # queryset = Menu.objects.all()
-    # serializer_class = MenuSerializer
-    #
-    # def get_queryset(self):
-    #     WEEKDAYS = [
-    #         'Monday',
-    #         'Tuesday',
-    #         'Wednesday',
-    #         'Thursday',
-    #         'Friday',
-    #         'Saturday',
-    #         'Sunday'
-    #     ]
-    #
-    #     current_day = datetime.today().weekday()
-    #     queryset = Menu.objects.filter(day=WEEKDAYS[current_day]).order_by('restaurant')
-    #     return queryset
-
-
-# class ResultsAPIView(APIView):
-#
-#     def get(self, request, *args, **kwargs):
-#         votes = Votes.objects.all()
-#         results = {}
-#
-#         for vote in votes:
-#             if vote.restaurant in results:
-#                 results[vote.restaurant] += 1
-#             else:
-#                 results.update({vote.restaurant: 1})
-#
-#         results_lst = [{"restaurant": k, "votes": v} for k, v in results.items()]
-#         serializer = ResultSerializer(results_lst, many=True)
-#         return Response(serializer.data)

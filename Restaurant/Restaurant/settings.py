@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'psycopg2',
     'authentication',
-    'employee',
     'menu',
     'restaurants',
     'votes'
