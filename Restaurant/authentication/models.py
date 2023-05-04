@@ -2,6 +2,7 @@ from django.contrib.auth.models import PermissionsMixin
 from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from rest_framework_simplejwt.tokens import RefreshToken
+from django.contrib.auth.hashers import check_password as django_check_password
 
 
 ROLES = (
@@ -65,3 +66,6 @@ class CustomUser(AbstractBaseUser):
         self.refresh_token = str(refresh)
         self.save()
         return self.refresh_token
+
+    def check_password(self, raw_password):
+        return django_check_password(raw_password, self.password)

@@ -1,0 +1,9 @@
+version: "3.10"
+
+services:
+
+  django:
+    image: inforce_test
+    build: .
+    ports:
+      - "8000:8000"

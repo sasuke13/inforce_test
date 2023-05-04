@@ -6,4 +6,4 @@ class Restaurants(models.Model):
     address = models.CharField(max_length=60)
 
     def __str__(self):
-        return f'name: {self.name}, address: {self.address}'
+        return f'{self.name}, by address: {self.address}'
