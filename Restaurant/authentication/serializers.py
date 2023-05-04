@@ -1,7 +1,4 @@
 from rest_framework import serializers
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from rest_framework_simplejwt.tokens import RefreshToken
-
 
 from authentication.models import CustomUser
 
@@ -28,22 +25,3 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
-
-class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
-    @classmethod
-    def get_token(cls, user):
-        token = super().get_token(user)
-
-        # Add custom claims
-        token['username'] = user.email
-        # token['email'] = user.email
-        token['password'] = user.password
-        return token
-
-class TokenRefreshSerializer(serializers.Serializer):
-    refresh_token = serializers.CharField()
-
-    def validate(self, attrs):
-        refresh = RefreshToken(attrs['refresh'])
-        data = {'access': str(refresh.access_token)}
-        return data
