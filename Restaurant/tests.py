@@ -3,17 +3,16 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from authentication.models import CustomUser
-import os
-from django.conf import settings
 
 
 class AuthenticationTest(APITestCase):
+    import os
+    from django.conf import settings
 
-
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Restaurant.settings')
+    settings.configure()
 
     def setUp(self):
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Restaurant.settings')
-        settings.configure()
         self.user = CustomUser.objects.create_user(
             email='testuser@gmail.com',
             password='testpass'
