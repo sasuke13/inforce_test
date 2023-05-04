@@ -40,35 +40,6 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['password'] = user.password
         return token
 
-# class CustomTokenObtainPairSerializer(serializers.Serializer):
-#     email = serializers.EmailField()
-#     password = serializers.CharField(style= {"input_type": "password"}, write_only=True)
-#
-#     def validate(self, attrs):
-#         email = attrs.get('email')
-#         password = attrs.get('password')
-#
-#         if email and password:
-#             try:
-#                 user = CustomUser.objects.get(email=email)
-#             except CustomUser.DoesNotExist:
-#                 raise serializers.ValidationError('User with given email does not exist')
-#             else:
-#                 if not user.check_password(password):
-#                     raise serializers.ValidationError('Invalid password')
-#         else:
-#             raise serializers.ValidationError('Email and password are required')
-#
-#         refresh = RefreshToken.for_user(user)
-#
-#         data = {}
-#         data['access'] = str(refresh.access_token)
-#         data['refresh'] = str(refresh)
-#         user.refresh = data['refresh']
-#         user.save()
-#         return data
-
-
 class TokenRefreshSerializer(serializers.Serializer):
     refresh_token = serializers.CharField()
 
